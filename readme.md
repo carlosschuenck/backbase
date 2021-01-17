@@ -4,6 +4,7 @@
 
 - Java 8
 - Tomcat 7
+- Maven 3.6.3
 
 ## Start Application
 
@@ -12,36 +13,65 @@ Use the command ```mvn -Dmaven.tomcat.port=8081 org.apache.tomcat.maven:tomcat7-
 
 ## Usage
 
-The first step is login. Do a post to the path ```http://localhost:8081/backbase/api/authenticate```. It will return a token. After that you can do any request below
+The first step is login. Do a post to the path ```http://localhost:8081/backbase/api/authenticate```. It will return a token. After that you can do any request below.
 
-#### Header
+Credentials:
+- username: admin
+- password: admin
+
+Example
+
+```cmd
+curl --location --request POST 'http://localhost:8081/backbase/api/authenticate' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "admin",
+    "password": "admin"
+}'
+```
+
+#### Headers
 
 It's necessary to pass the token every request\
 \
 ```Authorization: Bearer <token>```
 
-
 ## Routes
-
 
 #### Transactions list:
 - Method: GET
 - Path: ```http://localhost:8081/backbase/api/transactions/account/<account-id>```
-- Example: ```http://localhost:8081/backbase/api/transactions/account/savings-kids-john```
 
+Example: 
+
+```cmd
+curl --location --request GET 'http://localhost:8081/backbase/api/transactions/account/savings-kids-john' \
+--header 'Authorization: Bearer <token>'
+```
 
 #### Transaction filter based on transaction type
 
 - Method: GET
 - Path: ```http://localhost:8081/backbase/api/transactions/account/<account-id>/transaction-type/<transaction-type>```
-- Example: ```http://localhost:8081/backbase/api/transactions/account/savings-kids-john/transaction-type/sepa```
 
+Example:
+
+```cmd
+curl --location --request GET 'http://localhost:8081/backbase/api/transactions/account/savings-kids-john/transaction-type/sepa' \
+--header 'Authorization: Bearer <token>'
+```
 
   
 #### Total amount for transaction type
 - Method: GET
 - Path: ```http://localhost:8081/backbase/api/transactions/account/<account-id>/transaction-type/<transaction-type>/amount```
-- Example: ```http://localhost:8081/backbase/api/transactions/account/savings-kids-john/transaction-type/sepa/amount```
+
+Example: 
+
+```cmd
+curl --location --request GET 'http://localhost:8081/backbase/api/transactions/account/savings-kids-john/transaction-type/sepa/amount' \
+--header 'Authorization: Bearer <token>'
+```
 
 ## Test
 
