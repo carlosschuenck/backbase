@@ -8,7 +8,9 @@
 
 ## Start Application
 
-Use the command ```mvn -Dmaven.tomcat.port=8081 org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run``` in the root path
+Use the command ```mvn clean install``` to download dependencies and compile the API.
+
+Launch the API using the command ```mvn -Dmaven.tomcat.port=8081 org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run``` in the root path
 
 
 ## Usage
